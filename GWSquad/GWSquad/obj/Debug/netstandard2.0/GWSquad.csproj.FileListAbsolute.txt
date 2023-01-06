@@ -1,0 +1,17 @@
+C:\Users\stago\Desktop\GWSquad\GWSquad\GWSquad\bin\Debug\netstandard2.0\GWSquad.deps.json
+C:\Users\stago\Desktop\GWSquad\GWSquad\GWSquad\bin\Debug\netstandard2.0\GWSquad.dll
+C:\Users\stago\Desktop\GWSquad\GWSquad\GWSquad\bin\Debug\netstandard2.0\GWSquad.pdb
+C:\Users\stago\Desktop\GWSquad\GWSquad\GWSquad\obj\Debug\netstandard2.0\GWSquad.csproj.AssemblyReference.cache
+C:\Users\stago\Desktop\GWSquad\GWSquad\GWSquad\obj\Debug\netstandard2.0\GWSquad.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\stago\Desktop\GWSquad\GWSquad\GWSquad\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\stago\Desktop\GWSquad\GWSquad\GWSquad\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\stago\Desktop\GWSquad\GWSquad\GWSquad\obj\Debug\netstandard2.0\GWSquad.AssemblyInfoInputs.cache
+C:\Users\stago\Desktop\GWSquad\GWSquad\GWSquad\obj\Debug\netstandard2.0\GWSquad.AssemblyInfo.cs
+C:\Users\stago\Desktop\GWSquad\GWSquad\GWSquad\obj\Debug\netstandard2.0\GWSquad.csproj.CoreCompileInputs.cache
+C:\Users\stago\Desktop\GWSquad\GWSquad\GWSquad\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\stago\Desktop\GWSquad\GWSquad\GWSquad\obj\Debug\netstandard2.0\GWSquad.dll
+C:\Users\stago\Desktop\GWSquad\GWSquad\GWSquad\obj\Debug\netstandard2.0\refint\GWSquad.dll
+C:\Users\stago\Desktop\GWSquad\GWSquad\GWSquad\obj\Debug\netstandard2.0\GWSquad.pdb
+C:\Users\stago\Desktop\GWSquad\GWSquad\GWSquad\obj\Debug\netstandard2.0\ref\GWSquad.dll
+C:\Users\stago\Desktop\GWSquad\GWSquad\GWSquad\obj\Debug\netstandard2.0\SquadEdit.xaml.g.cs
+C:\Users\stago\Desktop\GWSquad\GWSquad\GWSquad\obj\Debug\netstandard2.0\BuildSelect.xaml.g.cs

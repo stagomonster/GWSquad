@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GWSquad.SquadEdit">
+    <ContentPage.Content>
+        <!--<Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height ="1"/>
+                <RowDefinition Height="1"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1"/>
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Grid.Row="1" Grid.Column="1">
+                
+            </StackLayout>
+        </Grid>-->
+
+        <Grid ColumnDefinitions="1*, 2*" RowDefinitions="1*" Padding="5,5,5,5">
+            <StackLayout Grid.Column="0" Grid.Row="0" VerticalOptions="FillAndExpand">
+                <Label Text="Details" FontSize="25"/>
+                <ScrollView>
+                    <Label x:Name="details">
+                        
+                    </Label>
+                </ScrollView>
+            </StackLayout>
+
+            <StackLayout Grid.Column="1" Grid.Row="0" >
+                <ListView ItemsSource="{Binding Builds}" x:Name="buildList" ItemTapped="buildList_ItemTapped">
+                    <ListView.Header>
+                        <StackLayout Orientation="Vertical">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                <Label Text="Squads" FontSize="25" />
+
+
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Button Text="Delete" Clicked="Delete"/>
+                                <Button Text="Add" Clicked="Add"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding BName}" />
+                                    <Label Text="{Binding Role}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage> 

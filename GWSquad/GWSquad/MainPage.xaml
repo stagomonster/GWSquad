@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GWSquad.MainPage"
+             Title="Squad Overview">
+
+            
+        <ListView x:Name="squadlist" ItemsSource="{Binding Squads}"   ItemTapped="squadlist_ItemTapped" >
+            <ListView.Header>
+                <StackLayout Orientation="Vertical">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Label Text="Squads" FontSize="25" />
+
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Button Text="Delete" Clicked="Delete"/>
+                        <Button Text="Add" Clicked="Add"/>
+                        <Button Text="Edit" Clicked="Edit"/>
+                    </StackLayout>
+                </StackLayout>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Label Text="{Binding Id}" FontSize="13" />
+                            <Entry Text="{Binding Name}" FontSize="16" FontAttributes="Bold"/>
+                            <Label Text="{Binding Builds.Count, StringFormat='{0} / 10'}" FontSize="16"/>
+                        <!--<Button Text="Delete" Clicked="Delete"/>-->
+                            <!--<Entry Text="Rename" MinimumWidthRequest="30" Completed="Entry_Completed" />-->
+                            <!--<Button Text="Rename" Clicked="Rename"/>-->
+                            <!--<Button Text="Edit" Clicked="Edit" HorizontalOptions="End"/>-->
+                            <!--<Button Text="Add" Clicked="Add"/>-->
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+</ContentPage>
