@@ -26,14 +26,21 @@ namespace GWSquad
                 }
             }
         }
+
+        public ObservableCollection<Build> BuildList
+        {
+            get;
+            set;
+        }
+
         public Professions c;
         public event PropertyChangedEventHandler PropertyChanged;
         public ViewModelMain() 
         {
             c = new Professions();
             Squads = new ObservableCollection<Squad>();
+            BuildList = new ObservableCollection<Build>();
             SetSquadList();
-
 
         }
 
@@ -45,10 +52,13 @@ namespace GWSquad
         public async void SetSquadList()
         {
             await ConnectToDBAsync();
-            LoadFromDBAsync();
 
-            AddBuild(BuildConstant.constant["Condition Firebrand"]);
-            AddBuild(BuildConstant.constant["Quickness Firebrand"]);
+            //AddBuild(BuildConstant.constant["Condition Firebrand"]);
+            //AddBuild(BuildConstant.constant["Quickness Firebrand"]);
+
+            LoadFromDBAsync();
+            LoadBuildFromDBAsync();
+
 
             //ObservableCollection<Build> list = new ObservableCollection<Build>();
             //Profession suppHerald;
@@ -71,12 +81,30 @@ namespace GWSquad
         public async void LoadFromDBAsync()
         {
             Squads.Clear();
-            foreach (var squad in await squadDB.GetItemsAsync())
+            foreach (var squad in await squadDB.GetSquadsAsync())
             {
+                Debug.WriteLine("HEREHREHREHREHREHREHRERHERH", squad.BuildIDs);
+                if (squad.BuildIDs == null )
+                {
+                    Debug.WriteLine("is null :(");
+                    squad.BuildIDs = "";
+                }
                 Squads.Add(squad);
+                
             }
 
         }
+
+        public async void LoadBuildFromDBAsync()
+        {
+            BuildList.Clear();
+            foreach (var build in await squadDB.GetBuildsAsync())
+            {
+                BuildList.Add(build);
+            }
+        }
+
+
 
         public void DeleteSquad(Squad s)
         {

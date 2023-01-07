@@ -4,9 +4,34 @@
              x:Class="GWSquad.BuildSelect">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ListView ItemsSource="{Binding BuildList}" x:Name="staticbuilds" ItemTapped="buildList_ItemTapped">
+                <ListView.Header>
+                    <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                            <Label Text="Squads" FontSize="25" />
+
+
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <!--<Button Text="Delete" Clicked="Delete"/>-->
+                            <Button Text="Add" Clicked="Add"/>
+                        </StackLayout>
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding BName}"/>
+                                <!--Text="{Binding BName}"-->
+                                <Label Text="{Binding Role}"/>
+                                <Label Text="{Binding Type}"/>
+                                <!--Text="{Binding Role}"/>-->
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

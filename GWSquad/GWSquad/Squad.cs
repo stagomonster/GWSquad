@@ -10,7 +10,7 @@ namespace GWSquad
 {
     public class Squad
     {
-        private int[] builds;
+        private string buildid;
         
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -30,16 +30,16 @@ namespace GWSquad
 
 
         //[OneToMany]
-        [TextBlob("BuildsBlobbed")]
-        public int[] Builds
+        //[TextBlob("BuildsBlobbed")]
+        public string BuildIDs
         {
-            get { return builds; }
+            get { return buildid; }
             set
             {
-                if (builds != value)
+                if (buildid != value)
                 {
                     
-                    builds = value;
+                    buildid = value;
                     if (PropertyChanged != null)
                     {
                         PropertyChanged(this, new PropertyChangedEventArgs("Builds"));
@@ -51,7 +51,7 @@ namespace GWSquad
 
 
 
-        public string BuildsBlobbed;
+        //public string BuildsBlobbed;
 
         private string name;
         public string Name

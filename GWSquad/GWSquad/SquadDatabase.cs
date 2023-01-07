@@ -29,13 +29,19 @@ namespace GWSquad
             Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
         }
 
-        public Task<List<Squad>> GetItemsAsync()
+        public Task<List<Squad>> GetSquadsAsync()
         {
             return Database.Table<Squad>().ToListAsync();
             /*            return Database.GetAllAsync<Squad>();*/ //returning NULL (fixed, Build Table creation)
                                                                   //return Database.GetAllWithChildrenAsync<Squad>().FirstOrDefaultAsync();
         }
 
+        public Task<List<Build>> GetBuildsAsync()
+        {
+            return Database.Table<Build>().ToListAsync();
+            /*            return Database.GetAllAsync<Squad>();*/ //returning NULL (fixed, Build Table creation)
+                                                                  //return Database.GetAllWithChildrenAsync<Squad>().FirstOrDefaultAsync();
+        }
         public Task<List<Squad>> GettemsByName()
         {
             // SQL queries are also possible

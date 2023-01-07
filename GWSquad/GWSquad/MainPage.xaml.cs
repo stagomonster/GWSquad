@@ -67,7 +67,9 @@ namespace GWSquad
 
             Squad squad = new Squad();
             squad.Name = "New Squad";
-            squad.Builds = new int[] { 1 };
+            squad.BuildIDs = "";
+
+            
 
             //Build b = new Build(false, false, false, false , false, false , false, false ,false, false , false , false, BuildType.Power,s.ClassList.)
 

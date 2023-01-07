@@ -20,11 +20,13 @@ namespace GWSquad
         }
 
         public ViewModelMain v;
+        Squad s;
         public SquadEdit(Squad s, ViewModelMain v)
         {
             InitializeComponent();
             SquadName = s.Name;
             this.v = v;
+            this.s = s;
             BindingContext = s;
             // Details: x/10 builds, 
 
@@ -39,7 +41,7 @@ namespace GWSquad
 
         private void Add(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new BuildSelect(v));
+            Navigation.PushAsync(new BuildSelect(v, s));
 
         }
 

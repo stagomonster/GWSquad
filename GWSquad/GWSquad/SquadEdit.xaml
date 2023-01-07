@@ -28,7 +28,7 @@
             </StackLayout>
 
             <StackLayout Grid.Column="1" Grid.Row="0" >
-                <ListView ItemsSource="{Binding Builds}" x:Name="buildList" ItemTapped="buildList_ItemTapped">
+                <ListView ItemsSource="{Binding s}" x:Name="buildList" ItemTapped="buildList_ItemTapped">
                     <ListView.Header>
                         <StackLayout Orientation="Vertical">
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
@@ -47,6 +47,7 @@
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal">
                                     <Label x:Name="BuildName"/>
+                                    <Label Text="{Binding BuildIDs}"/>
                                     <!--Text="{Binding BName}"-->
                                     <Label x:Name="BuildRole"/>
                                     <!--Text="{Binding Role}"/>-->
