@@ -19,7 +19,8 @@ namespace GWSquad
             var instance = new SquadDatabase();
 
             CreateTableResult result = await Database.CreateTableAsync<Squad>();
-            _ = await Database.CreateTableAsync<Build>();
+            CreateTableResult result2 = await Database.CreateTableAsync<Build>();
+
             return instance;
         });
 
@@ -30,9 +31,9 @@ namespace GWSquad
 
         public Task<List<Squad>> GetItemsAsync()
         {
-            //return Database.Table<Squad>().ToListAsync();
-            return Database.GetAllWithChildrenAsync<Squad>(); //returning NULL (fixed, Build Table creation)
-            //return Database.GetAllWithChildrenAsync<Squad>().FirstOrDefaultAsync();
+            return Database.Table<Squad>().ToListAsync();
+            /*            return Database.GetAllAsync<Squad>();*/ //returning NULL (fixed, Build Table creation)
+                                                                  //return Database.GetAllWithChildrenAsync<Squad>().FirstOrDefaultAsync();
         }
 
         public Task<List<Squad>> GettemsByName()
@@ -41,11 +42,23 @@ namespace GWSquad
             return Database.QueryAsync<Squad>("SELECT * FROM [Contact] WHERE [Name] = Bob");
         }
 
-        public Task<Squad> GetItemAsync(int id)
+        public Task<List<Build>> GetItemsByID(int id)
+        {
+            return Database.QueryAsync<Build>("SELECT * FROM [Build] WHERE [Id] = " + id.ToString());
+        }
+
+        public Task<Squad> SquadGetItemAsync(int id)
         {
             //return Database.Table<Squad>().Where(i => i.Id == id).FirstOrDefaultAsync();
-            return Database.GetWithChildrenAsync<Squad>(id);
+            return Database.GetAsync<Squad>(id);
             
+        }
+
+        public Task<Build> BuildGetItemAsync(int id)
+        {
+            //return Database.Table<Squad>().Where(i => i.Id == id).FirstOrDefaultAsync();
+            return Database.GetAsync<Build>(id);
+
         }
 
         public Task/*<int>*/ SaveItemAsync(Squad item)
@@ -54,7 +67,7 @@ namespace GWSquad
             if (item.Id != 0)
             {
                 //return Database.UpdateAsync(item);
-                Task s = Database.UpdateWithChildrenAsync(item); //task Method is null and the Task.Status is Faulted.
+                Task s = Database.UpdateAsync(item); //task Method is null and the Task.Status is Faulted.
                 return s;
                 
                 //return /*(Task<int>)*/Database.UpdateWithChildrenAsync(item);
@@ -63,7 +76,26 @@ namespace GWSquad
             }
             else
             {
-                return /*(Task<int>)*/Database.InsertWithChildrenAsync(item);
+                return /*(Task<int>)*/Database.InsertAsync(item);
+                //return Database.InsertOrReplaceWithChildrenAsync(item);
+            }
+        }
+
+        public Task SaveItemAsync(Build item)
+        {
+            if (item.Id != 0)
+            {
+                //return Database.UpdateAsync(item);
+                Task s = Database.UpdateAsync(item); //task Method is null and the Task.Status is Faulted.
+                return s;
+
+                //return /*(Task<int>)*/Database.UpdateWithChildrenAsync(item);
+
+
+            }
+            else
+            {
+                return /*(Task<int>)*/Database.InsertAsync(item);
                 //return Database.InsertOrReplaceWithChildrenAsync(item);
             }
         }

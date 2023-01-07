@@ -5,8 +5,44 @@ using System.Text;
 
 namespace GWSquad
 {
+    public struct NameToID
+    {
+        public string Name;
+        public int ID;
+    }
     public class BuildConstant
     {
+        public static Dictionary<int, string> BuildConstantDictionary = new Dictionary<int, string>()
+        {
+            [0] = "Condition Firebrand",
+            [1] = "Quickness Firebrand",
+            [2] = "Heal Quickness Firebrand",
+            [3] = "Power Dragonhunter",
+            [4] = "Condition Soulbeast",
+            [5] = "Handkite Soulbeast",
+            [6] = "Heal Alacrity Druid",
+            [7] = "Heal Alacrity Mechanist",
+            [8] = "Power Alacity Mechanist",
+            [9] = "Condition Mechanist",
+            [10] = "Power Mechanist",
+            [11] = "Power Quickness Scrapper",
+            [12] = "Power Scrapper",
+
+            [13] = "Heal Scourge",
+
+            [14] = "Condition Scourge",
+            [15] = "Power Reaper",
+            [16] = "Condition Quickness Harbinger",
+            [17] = "",
+
+            [18] = "",
+            [19] = "",
+            [20] = "",
+            [21] = "",
+            [22] = "",
+            [23] = "",
+            [24] = "",
+        };
         public static Dictionary<string, Build> constant = new Dictionary<string, Build>()
         {
             ["Condition Firebrand"] = new Build(true, false, true, false, true, false, false, false, false, true, false, false, "Condition", "Damage", "Condition Firebrand", "Firebrand"),

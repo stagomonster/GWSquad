@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -15,7 +16,7 @@ namespace GWSquad
         private ObservableCollection<Squad> squads;
         public ObservableCollection<Squad> Squads
         {
-            get { return squads; }
+            get { return squads; }  
             set
             {
                 if (squads != value)
@@ -35,10 +36,19 @@ namespace GWSquad
 
 
         }
+
+        public async Task<Build> GetBuild(int id)
+        {
+            List<Build> s = await squadDB.GetItemsByID(id);
+            return s[0];
+        }
         public async void SetSquadList()
         {
             await ConnectToDBAsync();
             LoadFromDBAsync();
+
+            AddBuild(BuildConstant.constant["Condition Firebrand"]);
+            AddBuild(BuildConstant.constant["Quickness Firebrand"]);
 
             //ObservableCollection<Build> list = new ObservableCollection<Build>();
             //Profession suppHerald;
@@ -91,6 +101,13 @@ namespace GWSquad
             {
                 Squads.Add(s);
                 squadDB.SaveItemAsync(s);
+            }
+        }
+        public void AddBuild(Build b)
+        {
+            if (b != null)
+            {
+                squadDB.SaveItemAsync(b);
             }
         }
         public async Task ConnectToDBAsync()

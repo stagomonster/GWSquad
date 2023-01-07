@@ -46,8 +46,10 @@
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding BName}" />
-                                    <Label Text="{Binding Role}"/>
+                                    <Label x:Name="BuildName"/>
+                                    <!--Text="{Binding BName}"-->
+                                    <Label x:Name="BuildRole"/>
+                                    <!--Text="{Binding Role}"/>-->
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

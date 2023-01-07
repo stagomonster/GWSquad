@@ -59,17 +59,22 @@ namespace GWSquad
         }
         private void Add(object sender, EventArgs e)
         {
+            //Squad squad = new Squad();
+            //squad.Name = "New Squad";
+            //ObservableCollection<Build> basic = new ObservableCollection<Build>();
+            //basic.Add(new Build(false, false, false, false, false, false, false, false, false, false, false, false, "Power", "Damage", "Generic DPS", "Deadeye"));
+            //squad.Builds = basic;
+
             Squad squad = new Squad();
             squad.Name = "New Squad";
-            ObservableCollection<Build> basic = new ObservableCollection<Build>();
-            basic.Add(new Build(false, false, false, false, false, false, false, false, false, false, false, false, "Power", "Damage", "Generic DPS", "Deadeye"));
-            squad.Builds = basic;
-            
+            squad.Builds = new int[] { 1 };
+
             //Build b = new Build(false, false, false, false , false, false , false, false ,false, false , false , false, BuildType.Power,s.ClassList.)
 
-            
+
             viewmodel.AddSquad(squad);
             Navigation.PushAsync(new SquadEdit(squad, viewmodel));
+            //???? 
 
         }
 

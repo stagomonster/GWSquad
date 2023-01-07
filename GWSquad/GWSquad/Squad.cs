@@ -10,7 +10,7 @@ namespace GWSquad
 {
     public class Squad
     {
-        private ObservableCollection<Build> builds;
+        private int[] builds;
         
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -30,8 +30,8 @@ namespace GWSquad
 
 
         //[OneToMany]
-        [TextBlob("BuildsBlobbed")]       
-        public ObservableCollection<Build> Builds
+        [TextBlob("BuildsBlobbed")]
+        public int[] Builds
         {
             get { return builds; }
             set
@@ -48,6 +48,8 @@ namespace GWSquad
 
             }
         }
+
+
 
         public string BuildsBlobbed;
 

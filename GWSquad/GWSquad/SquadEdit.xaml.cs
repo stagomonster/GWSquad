@@ -27,6 +27,9 @@ namespace GWSquad
             this.v = v;
             BindingContext = s;
             // Details: x/10 builds, 
+
+            //Get Build for Name Role Profession and Bons
+            
         }
 
         private void Delete(object sender, EventArgs e)
