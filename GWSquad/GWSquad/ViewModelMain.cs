@@ -42,6 +42,14 @@ namespace GWSquad
             BuildList = new ObservableCollection<Build>();
             SetSquadList();
 
+
+            //AddBuild(BuildConstant.constant["string"]);
+            //AddBuild(BuildConstant.constant["string"]);
+            //AddBuild(BuildConstant.constant["string"]);
+            //AddBuild(BuildConstant.constant["string"]);
+
+
+
         }
 
         public async Task<Build> GetBuild(int id)
@@ -58,6 +66,28 @@ namespace GWSquad
 
             LoadFromDBAsync();
             LoadBuildFromDBAsync();
+
+            //await squadDB.DeleteAllBuildAsync();
+            //AddBuild(BuildConstant.constant["Condition Firebrand"]);
+            //AddBuild(BuildConstant.constant["Quickness Firebrand"]);
+            //AddBuild(BuildConstant.constant["Heal Quickness Firebrand"]);
+            //AddBuild(BuildConstant.constant["Power Dragonhunter"]);
+            //AddBuild(BuildConstant.constant["Condition Soulbeast"]);
+            //AddBuild(BuildConstant.constant["Handkite Soulbeast"]);
+            //AddBuild(BuildConstant.constant["Heal Alacrity Druid"]);
+            //AddBuild(BuildConstant.constant["Heal Alacrity Mechanist"]);
+            //AddBuild(BuildConstant.constant["Power Alacity Mechanist"]);
+            //AddBuild(BuildConstant.constant["Condition Mechanist"]);
+            //AddBuild(BuildConstant.constant["Power Mechanist"]);
+
+            //AddBuild(BuildConstant.constant["Power Quickness Scrapper"]);
+
+            //AddBuild(BuildConstant.constant["Power Scrapper"]);
+
+            //AddBuild(BuildConstant.constant["Heal Scourge"]);
+            //AddBuild(BuildConstant.constant["Condition Scourge"]);
+            //AddBuild(BuildConstant.constant["Power Reaper"]);
+            //AddBuild(BuildConstant.constant["Condition Quickness Harbinger"]);
 
 
             //ObservableCollection<Build> list = new ObservableCollection<Build>();

@@ -42,15 +42,15 @@ namespace GWSquad
             /*            return Database.GetAllAsync<Squad>();*/ //returning NULL (fixed, Build Table creation)
                                                                   //return Database.GetAllWithChildrenAsync<Squad>().FirstOrDefaultAsync();
         }
-        public Task<List<Squad>> GettemsByName()
-        {
-            // SQL queries are also possible
-            return Database.QueryAsync<Squad>("SELECT * FROM [Contact] WHERE [Name] = Bob");
-        }
+        //public Task<List<Squad>> GettemsByName()
+        //{
+        //    // SQL queries are also possible
+        //    return Database.QueryAsync<Squad>("SELECT * FROM [Contact] WHERE [Name] = Bob");
+        //}
 
         public Task<List<Build>> GetItemsByID(int id)
         {
-            return Database.QueryAsync<Build>("SELECT * FROM [Build] WHERE [Id] = " + id.ToString());
+            return Database.QueryAsync<Build>("SELECT * FROM [Build] WHERE [PublicID] = " + id.ToString());
         }
 
         public Task<Squad> SquadGetItemAsync(int id)
@@ -116,6 +116,11 @@ namespace GWSquad
         public Task<int> DeleteAllItemsAsync()
         {
             return Database.DeleteAllAsync<Squad>();
+        }
+
+        public Task<int> DeleteAllBuildAsync()
+        {
+            return Database.DeleteAllAsync<Build>();
         }
         //https://stackoverflow.com/questions/32581955/using-textblobbed-in-sqlite-net-extensions
     }

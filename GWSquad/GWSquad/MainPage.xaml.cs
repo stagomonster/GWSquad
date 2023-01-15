@@ -65,11 +65,13 @@ namespace GWSquad
             //basic.Add(new Build(false, false, false, false, false, false, false, false, false, false, false, false, "Power", "Damage", "Generic DPS", "Deadeye"));
             //squad.Builds = basic;
 
-            Squad squad = new Squad();
-            squad.Name = "New Squad";
-            squad.BuildIDs = "";
+            Squad squad = new Squad
+            {
+                Name = "New Squad",
+                BuildIDs = ""
+            };
 
-            
+
 
             //Build b = new Build(false, false, false, false , false, false , false, false ,false, false , false , false, BuildType.Power,s.ClassList.)
 

@@ -17,6 +17,8 @@ namespace GWSquad
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
+        public int PublicID { get; set; }
+
 
         //[ForeignKey(typeof(Squad))]
         //public int SquadId { get; set; }
@@ -80,7 +82,7 @@ namespace GWSquad
             
         }
         
-        public Build(bool Aegis, bool Alacrity,
+        public Build(int pid, bool Aegis, bool Alacrity,
             bool Fury, bool Might, bool Protection, bool Quickness,
             bool Regeneration, bool Resistance, bool Resolution, bool Stability, bool Swiftness, bool Vigor,
             string type,  string role, string name, string c)

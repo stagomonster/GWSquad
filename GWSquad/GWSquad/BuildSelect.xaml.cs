@@ -23,6 +23,8 @@ namespace GWSquad
             this.s = s;
             BindingContext = v;
 
+            
+
         }
 
         private void buildList_ItemTapped(object sender, ItemTappedEventArgs e)

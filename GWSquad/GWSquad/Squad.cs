@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
@@ -49,6 +50,14 @@ namespace GWSquad
             }
         }
 
+        //public string Names
+        //{
+        //    get
+        //    {
+
+        //    }
+        //}
+
 
 
         //public string BuildsBlobbed;
@@ -74,6 +83,26 @@ namespace GWSquad
         //    Builds = build;
         //    Name = name;
         //}
+
+        public List<int> getBuildIDs()
+        {
+            List<int> output = new List<int>();
+            string current = "";
+            for (int i =0; i<BuildIDs.Length; i++)
+            {
+                if (BuildIDs[i] == ',')
+                {
+                    output.Add(int.Parse(current));
+                    
+                    current = "";
+                }
+                else
+                {
+                    current += BuildIDs[i];
+                }
+            }
+            return output;
+        }
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
