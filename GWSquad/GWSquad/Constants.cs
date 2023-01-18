@@ -7,7 +7,8 @@ namespace GWSquad
 {
     public class Constants
     {
-        public const string DatabaseFilename = "GWSquadDBSQLite.db3"; //file name of database
+        //public const string DatabaseFilename = "GWSquadDbSQLite.db3"; //file name of database
+        public const string DatabaseFilename = "GWSquadDbSQLite3.db3"; //file name of database
 
         public const SQLite.SQLiteOpenFlags Flags =
             // open the database in read/write mode

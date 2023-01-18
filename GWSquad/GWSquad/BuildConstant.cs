@@ -5,14 +5,15 @@ using System.Text;
 
 namespace GWSquad
 {
-    public struct NameToID
-    {
-        public string Name;
-        public int ID;
-    }
+    //public struct NameToID //Not used.
+    //{
+    //    public string Name;
+    //    public int ID;
+    //}
     public class BuildConstant
     {
-        public static Dictionary<int, string> BuildConstantDictionary = new Dictionary<int, string>()
+        public static Dictionary<int, string> BuildConstantDictionary = new Dictionary<int, string>() //This is currently NOT USED.
+                                                                                                      //It was intended for use in conjunction with Professions.cs and the below Dictionary
         {
             [0] = "Condition Firebrand",
             [1] = "Quickness Firebrand",
@@ -43,28 +44,28 @@ namespace GWSquad
             [23] = "",
             [24] = "",
         };
-        public static Dictionary<string, Build> constant = new Dictionary<string, Build>()
+        public static Dictionary<string, Build> constant = new Dictionary<string, Build>() //This is USED (in MainPage.xaml.cs) . Stores all the Preset Builds. More can be added in future. 
         {
-            ["Condition Firebrand"] = new Build(0, true, false, true, false, true, false, false, false, false, true, false, false, "Condition", "Damage", "Condition Firebrand", "Firebrand"),
-            ["Quickness Firebrand"] = new Build(1,true, false, true, false, true, true, false, false, false, true, false, false, "Condition", "Offensive Support", "Quickness Firebrand", "Firebrand"),
-            ["Heal Quickness Firebrand"] = new Build(2,true, false, true, true, true, true, true, false, false, true, true, false, "Power", "Support", "Heal Quickness Firebrand", "Firebrand"),
-            ["Power Dragonhunter"] = new Build(3,true, false, false, false, false, false, false, false, false, true, false, false, "Power", "Damage", "Power Dragonhunter", "Dragonhunter"),
-            
-            ["Condition Soulbeast"] = new Build(4,false,false,false,false,false,false,false,false,false,true,false,false,"Condition", "Damage", "Condition Soulbeast", "Soulbeast"),
-            ["Handkite Soulbeast"] = new Build(5,false,false,false,false,false,false,false,false,false,false,false,false,"Power", "Handkite", "Handkite Soulbeast", "Soulbeast"),
-            ["Heal Alacrity Druid"] = new Build(6,false,true,true,true,true,false,true,false,false,false,true,false,"Power", "Support", "Heal Alacrity Druid", "Druid"),
-            
-            ["Heal Alacrity Mechanist"] = new Build(7,false,true,true,true,true,false,true,false,false,true,true,true,"Power", "Support", "Heal Alacrity Mechanist", "Mechanist"),
-            ["Power Alacity Mechanist"] = new Build(8,false,true,true,true,false,false,false,false,false,true,false,false,"Power", "Offensive Support", "Power Alacrity Mechanist", "Mechanist"),
-            ["Condition Mechanist"] = new Build(9,false,false,false,false,false,false,false,false,false,false,false,false,"Condition", "Damage", "Condition Mechanist", "Mechanist"),
-            ["Power Mechanist"] = new Build(10,false,false,true,true,false,false,false,false,false,false,false,false,"Power", "Damage", "Power Mechanist", "Mechanist"),
-            ["Power Quickness Scrapper"] = new Build(11,false,false,false,false,false,true,false,false,false,false,false,false,"Power", "Offensive Support", "Power Quickness Scrapper", "Scrapper"),
-            ["Power Scrapper"] = new Build(12,false,false,true,false,true,false,false,false,false,false,false,false, "Power", "Damage", "Power Scrapper", "Scrapper"),
+            ["Condition Firebrand"] = new Build(0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, "Condition", "Damage", "Condition Firebrand", "Firebrand"),
+            ["Quickness Firebrand"] = new Build(1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0, "Condition", "Offensive Support", "Quickness Firebrand", "Firebrand"),
+            ["Heal Quickness Firebrand"] = new Build(2, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, "Power", "Support", "Heal Quickness Firebrand", "Firebrand"),
+            ["Power Dragonhunter"] = new Build(3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, "Power", "Damage", "Power Dragonhunter", "Dragonhunter"),
 
-            ["Heal Scourge"] = new Build(13,false,false,false,false,false,false,true,false,false,false,false,false,"Power", "Support", "Heal Scourge", "Scourge"),
-            ["Condition Scourge"] = new Build(14,false,false,false,false,false,false,false,false,false,false,false,false,"Condition", "Damage", "Condition Scourge", "Scourge"),
-            ["Power Reaper"] = new Build(15,false,false,false,false,false,false,false,false,false,false,false,false,"Power", "Damage", "Power Reaper", "Reaper"),
-            ["Condition Quickness Harbinger"] = new Build(16,false,false,true,true,false,true,false,false,false,false,true,false, "Condition", "Offensive Support", "Condition Quickness Harbinger", "Harbinger"),
+            ["Condition Soulbeast"] = new Build(4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, "Condition", "Damage", "Condition Soulbeast", "Soulbeast"),
+            ["Handkite Soulbeast"] = new Build(5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Power", "Handkite", "Handkite Soulbeast", "Soulbeast"),
+            ["Heal Alacrity Druid"] = new Build(6, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, "Power", "Support", "Heal Alacrity Druid", "Druid"),
+
+            ["Heal Alacrity Mechanist"] = new Build(7, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, "Power", "Support", "Heal Alacrity Mechanist", "Mechanist"),
+            ["Power Alacity Mechanist"] = new Build(8, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, "Power", "Offensive Support", "Power Alacrity Mechanist", "Mechanist"),
+            ["Condition Mechanist"] = new Build(9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Condition", "Damage", "Condition Mechanist", "Mechanist"),
+            ["Power Mechanist"] = new Build(10, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, "Power", "Damage", "Power Mechanist", "Mechanist"),
+            ["Power Quickness Scrapper"] = new Build(11, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, "Power", "Offensive Support", "Power Quickness Scrapper", "Scrapper"),
+            ["Power Scrapper"] = new Build(12, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, "Power", "Damage", "Power Scrapper", "Scrapper"),
+
+            ["Heal Scourge"] = new Build(13, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, "Power", "Support", "Heal Scourge", "Scourge"),
+            ["Condition Scourge"] = new Build(14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Condition", "Damage", "Condition Scourge", "Scourge"),
+            ["Power Reaper"] = new Build(15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "Power", "Damage", "Power Reaper", "Reaper"),
+            ["Condition Quickness Harbinger"] = new Build(16, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, "Condition", "Offensive Support", "Condition Quickness Harbinger", "Harbinger"),
 
 
         };   

@@ -12,12 +12,12 @@ namespace GWSquad
     //[Table("Build")]
     public class Build
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged; //property changed event
 
         [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        public int Id { get; set; } //ID for Database
 
-        public int PublicID { get; set; }
+        public int PublicID { get; set; } //PUBLIC ID for Squad BUILDID Property and used to Reference specific Builds within that BUILDID property.
 
 
         //[ForeignKey(typeof(Squad))]
@@ -27,22 +27,22 @@ namespace GWSquad
         //boonlist
         //Aegis, Alacrity, Fury, Might, Protection, Quickness, Regeneration, Resistance, Resolution, Stability, Swiftness, Vigor
         //bool[] hasBoon;
-        public bool Aegis;
-        public bool Alacrity;
-        public bool Fury;
-        public bool Might;
-        public bool Protection;
-        public bool Quickness;
+        public int Aegis { get; set; } //Bunch of booleans reflecting whether or not the build provides that buff.
+        public int Alacrity { get; set; }
+        public int Fury { get; set; }
+        public int Might { get; set; }
+        public int Protection { get; set; }
+        public int Quickness { get; set; }
 
-        public bool Regeneration;
-        public bool Resistance;
-        public bool Resolution;
-        public bool Stability;
+        public int Regeneration { get; set; }
+        public int Resistance { get; set; }
+        public int Resolution { get; set; }
+        public int Stability { get; set; }
 
-        public bool Swiftness;
-        public bool Vigor;
-        public string type; //power condi 
-        private string role; //Damage, Offensive Support, Support
+        public int Swiftness { get; set; }
+        public int Vigor { get; set; }
+        public string type { get; set; } //power condi. | Damage type of Build. Useful for bosses that favor condi/power classes.
+        private string role; //Damage, Offensive Support, Support. | What role the Build plays.
         public string Role
         {
             get { return role; }
@@ -59,7 +59,7 @@ namespace GWSquad
             }
         }
         private string bname;
-        public string BName
+        public string BName //Build Name
         {
             get { return bname; }
             set
@@ -75,19 +75,33 @@ namespace GWSquad
             }
         }
 
-        public string c;
+        private string c;
+        public string C //Build Profession/Class, eg. Firebrand.
+        {
+            get { return c; }
+            set 
+            { if (c != value)
+                {
+                    c = value;
+                    if (PropertyChanged != null)
+                    {
+                        PropertyChanged(this, new PropertyChangedEventArgs("C"));
+                    }
+                } 
+            }
+        }
 
         public Build()
         {
             
         }
         
-        public Build(int pid, bool Aegis, bool Alacrity,
-            bool Fury, bool Might, bool Protection, bool Quickness,
-            bool Regeneration, bool Resistance, bool Resolution, bool Stability, bool Swiftness, bool Vigor,
-            string type,  string role, string name, string c)
+        public Build(int pid, int Aegis, int Alacrity,
+            int Fury, int Might, int Protection, int Quickness,
+            int Regeneration, int Resistance, int Resolution, int Stability, int Swiftness, int Vigor,
+            string type,  string role, string name, string c) //Constructor. Don't worry, this is only used in the Dictionary BuildConstant.cs which is static, not anywhere else. 
         {
-            //hasBoon = new bool[] { Aegis, Alacrity, Fury, Might, Protection, Quickness, Regeneration, Resistance, Resolution, Stability, Swiftness, Vigor };
+            this.PublicID = pid;
             this.Aegis = Aegis;
             this.Alacrity = Alacrity;
             this.Fury = Fury;
@@ -107,21 +121,15 @@ namespace GWSquad
             this.c = c;
         }
 
-        //public Build(bool[] hasBoon, BuildType type, Class c)
-        //{
-        //    this.hasBoon = hasBoon;
-        //    this.type = type;
-        //    this.c = c;
-        //}
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
-    public enum BuildType
-    {
-        Power,
-        Condition,
-        Support
-    }
+    //public enum BuildType 
+    //{
+    //    Power,
+    //    Condition,
+    //    Support
+    //}
 }

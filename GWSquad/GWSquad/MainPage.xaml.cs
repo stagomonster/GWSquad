@@ -7,20 +7,30 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
+using System.Threading;
 
 namespace GWSquad
 {
     public partial class MainPage : ContentPage
     {
-        public ViewModelMain viewmodel;
-        private Squad selected;
+        public ViewModelMain viewmodel; // viewmodel for data
+        private Squad selected; //System to delete item from ListView
         
-        public MainPage()
+        public MainPage() //constructor
         {
+            
             InitializeComponent();
 
             viewmodel = new ViewModelMain();
-            BindingContext = viewmodel;
+            BindingContext = viewmodel; //bind to vm
+            
+        }
+
+        public MainPage(ViewModelMain viewmodel) //Constructor IF and only IF it is from SquadEdit screen, meaning that the Viewmodel is already established during App run.
+        {
+            InitializeComponent();
+            this.viewmodel = viewmodel;
+            BindingContext = this.viewmodel; //bind to vm
         }
 
         private void squadlist_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -29,22 +39,16 @@ namespace GWSquad
 
         }
 
-        private void Delete(object sender, EventArgs e)
+        private void Delete(object sender, EventArgs e) // Delete from listview
         {
             if(squadlist.SelectedItem != null)
             {
                 squadlist.SelectedItem = null;
                 viewmodel.DeleteSquad(selected);
-
             }
         }
 
-        private void Rename(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void Edit(object sender, EventArgs e)
+        private void Edit(object sender, EventArgs e) //Pushes SquadEdit Page to edit the existing squad.
         {
             if(squadlist.SelectedItem != null)
             {
@@ -53,33 +57,23 @@ namespace GWSquad
             }
         }
 
-        private void Entry_Completed(object sender, EventArgs e)
+        private void Add(object sender, EventArgs e) //Pushes SquadEdit Page to edit new Squad created.
         {
 
-        }
-        private void Add(object sender, EventArgs e)
-        {
-            //Squad squad = new Squad();
-            //squad.Name = "New Squad";
-            //ObservableCollection<Build> basic = new ObservableCollection<Build>();
-            //basic.Add(new Build(false, false, false, false, false, false, false, false, false, false, false, false, "Power", "Damage", "Generic DPS", "Deadeye"));
-            //squad.Builds = basic;
 
-            Squad squad = new Squad
-            {
-                Name = "New Squad",
-                BuildIDs = ""
-            };
-
-
-
-            //Build b = new Build(false, false, false, false , false, false , false, false ,false, false , false , false, BuildType.Power,s.ClassList.)
+            Squad squad = new Squad();
+            squad.Name = "New Squad";
+            squad.BuildIDs = "0"; //This corresponds to "Condition Firebrand" as seen in BuildConstant.cs
 
 
             viewmodel.AddSquad(squad);
             Navigation.PushAsync(new SquadEdit(squad, viewmodel));
-            //???? 
+            
 
+        }
+        protected override bool OnBackButtonPressed() // Override back button
+        {
+            return true;
         }
 
     }

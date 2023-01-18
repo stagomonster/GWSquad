@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GWSquad
 {
-    public class Professions
+    public class Professions //NOT USED. Intended for usage in for displaying Icons, potentially in future.
     {
         public static Dictionary<string, Profession> ClassList = new Dictionary<string, Profession>()
             {

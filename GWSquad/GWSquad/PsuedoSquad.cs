@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GWSquad
 {
-    public class PsuedoSquad
+    public class PsuedoSquad //NOT USED
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

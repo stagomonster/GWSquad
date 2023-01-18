@@ -10,11 +10,11 @@ using Xamarin.Essentials;
 
 namespace GWSquad
 {
-    public class ViewModelMain
+    public class ViewModelMain //viewmodel that stores Database
     {
-        public SquadDatabase squadDB;
+        public SquadDatabase squadDB; //Database
         private ObservableCollection<Squad> squads;
-        public ObservableCollection<Squad> Squads
+        public ObservableCollection<Squad> Squads //List of Squads for use in Squad Table in the Database
         {
             get { return squads; }  
             set
@@ -27,27 +27,22 @@ namespace GWSquad
             }
         }
 
-        public ObservableCollection<Build> BuildList
+        public ObservableCollection<Build> BuildList //List of Builds for use in the Build Table in the Database.
+                                                     //The Build Table is static and should not change besides intial input, as it stores a fixed number and type of preset build options
         {
             get;
             set;
         }
 
         public Professions c;
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged; //Event Handler for changes
         public ViewModelMain() 
         {
+            //Initialization
             c = new Professions();
             Squads = new ObservableCollection<Squad>();
             BuildList = new ObservableCollection<Build>();
-            SetSquadList();
-
-
-            //AddBuild(BuildConstant.constant["string"]);
-            //AddBuild(BuildConstant.constant["string"]);
-            //AddBuild(BuildConstant.constant["string"]);
-            //AddBuild(BuildConstant.constant["string"]);
-
+            SetSquadList(); //Initialization Function (Async)
 
 
         }
@@ -55,17 +50,16 @@ namespace GWSquad
         public async Task<Build> GetBuild(int id)
         {
             List<Build> s = await squadDB.GetItemsByID(id);
-            return s[0];
+            return s[s.Count-1];
         }
         public async void SetSquadList()
         {
-            await ConnectToDBAsync();
+            await ConnectToDBAsync(); //Connect to Database
 
-            //AddBuild(BuildConstant.constant["Condition Firebrand"]);
-            //AddBuild(BuildConstant.constant["Quickness Firebrand"]);
+            await LoadFromDBAsync(); // Load Squads from Database
+            await LoadBuildFromDBAsync(); //Load Builds from Database
 
-            LoadFromDBAsync();
-            LoadBuildFromDBAsync();
+            //The below commented out section of code is to be run once on the first run of the app, to save the preset Builds into the database. Afterwards, it should not be used.
 
             //await squadDB.DeleteAllBuildAsync();
             //AddBuild(BuildConstant.constant["Condition Firebrand"]);
@@ -89,71 +83,65 @@ namespace GWSquad
             //AddBuild(BuildConstant.constant["Power Reaper"]);
             //AddBuild(BuildConstant.constant["Condition Quickness Harbinger"]);
 
+            //await squadDB.DeleteAllItemsAsync();
+            //Squad s = new Squad();
+            //s.Name = "Test Squad";
+            //s.BuildIDs = "3,6";
+            //AddSquad(s);
 
-            //ObservableCollection<Build> list = new ObservableCollection<Build>();
-            //Profession suppHerald;
-            //Professions.ClassList.TryGetValue("Revenant", out suppHerald);
-            //list.Add(new Build(false, false, true, false, true, true, false, false, false, true, true, false, "Power", "Support","Support Herald", suppHerald));
-            //Squad testSquad = new Squad();
-            //testSquad.Builds = list;
-            //testSquad.Name = "testSquad";
-            //AddSquad(testSquad);
+            //End of Commented out code
 
-            //Profession condiMechanist = new Profession("", "");
-            //Professions.ClassList.TryGetValue("Engineer", out condiMechanist);
-            //ObservableCollection<Build> list2 = new ObservableCollection<Build>();
-            //list2.Add(new Build(false, false, true, false, true, true, false, false, false, true, true, false, "Condition", "Offensive Support","Condition Mechanist", condiMechanist));
-            //Squad testSquad2 = new Squad();
-            //testSquad2.Builds = list2;
-            //testSquad2.Name = "CondiSquad";
-            //AddSquad(testSquad2);
+
         }
-        public async void LoadFromDBAsync()
+        public async Task LoadFromDBAsync() //Loads from the Database (Squad)
         {
             Squads.Clear();
-            foreach (var squad in await squadDB.GetSquadsAsync())
+            List<Squad> s = await squadDB.GetSquadsAsync(); 
+            for(int i = 0; i<s.Count; i++)
             {
-                Debug.WriteLine("HEREHREHREHREHREHREHRERHERH", squad.BuildIDs);
-                if (squad.BuildIDs == null )
+                if (s[i].BuildIDs == null )
                 {
-                    Debug.WriteLine("is null :(");
-                    squad.BuildIDs = "";
+                    s[i].BuildIDs = "";
                 }
-                Squads.Add(squad);
+                Squads.Add(s[i]);
                 
             }
 
         }
 
-        public async void LoadBuildFromDBAsync()
+        public async Task LoadBuildFromDBAsync() //Loads from the Database (Build)
         {
             BuildList.Clear();
-            foreach (var build in await squadDB.GetBuildsAsync())
+            List<Build> b = await squadDB.GetBuildsAsync();
+            for(int i = 0; i<b.Count; i++)
             {
-                BuildList.Add(build);
+                BuildList.Add(b[i]);
             }
+            //foreach (var build in await squadDB.GetBuildsAsync())
+            //{
+            //    BuildList.Add(build);
+            //}
         }
 
 
 
-        public void DeleteSquad(Squad s)
+        public void DeleteSquad(Squad s) // Deletes a Squad
         {
              //prevent deletion while searching
             Squads.Remove(s);
             squadDB.DeleteItemAsync(s);
             SaveDBAsync();
-            //contactDB.DeleteItemAsync(contact);
         }
-        public async void SaveDBAsync()
+        public async void SaveDBAsync() //Saves the Squads in the Database
         {
-            await squadDB.DeleteAllItemsAsync();
+            await squadDB.DeleteAllItemsAsync();    
             for (int i = 0; i < Squads.Count; i++)
             {
                 Squad temp = Squads[i];
                 await squadDB.SaveItemAsync(temp);
             }
         }
-        public void AddSquad(Squad s)
+        public void AddSquad(Squad s) //Adds a Squad to Database
         {
             if (s!= null)
             {
@@ -161,14 +149,15 @@ namespace GWSquad
                 squadDB.SaveItemAsync(s);
             }
         }
-        public void AddBuild(Build b)
+        public void AddBuild(Build b) // Adds a Build to Database
         {
             if (b != null)
             {
+                BuildList.Add(b);
                 squadDB.SaveItemAsync(b);
             }
         }
-        public async Task ConnectToDBAsync()
+        public async Task ConnectToDBAsync() // Connection to Database
         {
             squadDB = await SquadDatabase.Instance;
 

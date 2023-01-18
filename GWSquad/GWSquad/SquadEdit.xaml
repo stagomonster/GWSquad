@@ -2,44 +2,33 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GWSquad.SquadEdit"
-             x:Name="SqEditPage">
+             x:Name="SqEditPage"
+             NavigationPage.HasBackButton="False"
+             BackgroundColor="Black">
     <ContentPage.Content>
-        <!--<Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height ="1"/>
-                <RowDefinition Height="1"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1"/>
-            </Grid.ColumnDefinitions>
 
-            <StackLayout Grid.Row="1" Grid.Column="1">
-                
-            </StackLayout>
-        </Grid>-->
-
-        <Grid ColumnDefinitions="1*, 2*" RowDefinitions="1*" Padding="5,5,5,5">
-            <StackLayout Grid.Column="0" Grid.Row="0" VerticalOptions="FillAndExpand">
+        <Grid ColumnDefinitions="1*, 2*" RowDefinitions="1*" Padding="5,5,5,5"> 
+            <StackLayout Grid.Column="0" Grid.Row="0" VerticalOptions="FillAndExpand" BackgroundColor="Black">
                 <Label Text="Details" FontSize="25"/>
                 <ScrollView>
-                    <Label x:Name="details">
-                        
-                    </Label>
+                    <Label x:Name="details" TextColor="White"/>
                 </ScrollView>
             </StackLayout>
 
             <StackLayout Grid.Column="1" Grid.Row="0" >
-                <ListView ItemsSource="{Binding sqBuilds}" x:Name="buildList" ItemTapped="buildList_ItemTapped">
+                <ListView ItemsSource="{Binding sqBuilds}" x:Name="buildList" ItemTapped="buildList_ItemTapped" BackgroundColor="Black">
+                    
                     <ListView.Header>
                         <StackLayout Orientation="Vertical">
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                                <Label Text="Squads" FontSize="25" />
+                                <Label Text="Squads" FontSize="25" BackgroundColor="Transparent" TextColor="White"/>
 
 
                             </StackLayout>
                             <StackLayout Orientation="Horizontal">
-                                <Button Text="Delete" Clicked="Delete"/>
-                                <Button Text="Add" Clicked="Add"/>
+                                <Button Text="Back" Clicked="Button_Clicked" BackgroundColor="Gray" TextColor="White"/>
+                                <Button Text="Delete" Clicked="Delete" BackgroundColor="Gray" TextColor="White"/>
+                                <Button Text="Add" Clicked="Add" BackgroundColor="Gray" TextColor="White"/>
                             </StackLayout>
                         </StackLayout>
                     </ListView.Header>
@@ -48,13 +37,9 @@
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal">
                                     <!--<Label Text="{Binding BuildNames, Source={x:Reference SqEditPage}}"/>-->
-                                    <Label Text="{Binding BName}"/>
-                                    <Label Text="{Binding Role}"/>
-                                    <Label Text="{Binding c}"/>
-                                    <!--Text="{Binding BName}"-->
-                                    <Label  Text=""/>
-                                    <Image x:Name="ProfessionIcon"/>
-                                    <!--Text="{Binding Role}"/>-->
+                                    <Label Text="{Binding Role}" BackgroundColor="Transparent" TextColor="White"/>
+                                    <Label Text="{Binding BName, StringFormat='&quot;{0}&quot;'}" BackgroundColor="Transparent" TextColor="White"/>
+                                    <!--<Label Text="{Binding C}" BackgroundColor="Transparent" TextColor="White"/>-->
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace GWSquad
 {
 
-    public class AsyncLazy<T>
+    public class AsyncLazy<T> //async lazy class from resources
     {
         readonly Lazy<Task<T>> instance;
 

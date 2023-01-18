@@ -10,7 +10,7 @@ namespace GWSquad
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new MainPage()) { BarBackgroundColor=Color.Black}; //First Page is MainPage. Then, SquadEdit, then BuildSelect and back down again.
         }
 
         protected override void OnStart()

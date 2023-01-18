@@ -8,21 +8,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("GWSquad.SquadEdit.xaml", "SquadEdit.xaml", typeof(global::GWSquad.SquadEdit))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("GWSquad.BuildSelect.xaml", "BuildSelect.xaml", typeof(global::GWSquad.BuildSelect))]
 
 namespace GWSquad {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("SquadEdit.xaml")]
-    public partial class SquadEdit : global::Xamarin.Forms.ContentPage {
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("BuildSelect.xaml")]
+    public partial class BuildSelect : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.ContentPage SqEditPage;
+        private global::Xamarin.Forms.ListView staticbuilds;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
-            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(SquadEdit));
-            SqEditPage = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ContentPage>(this, "SqEditPage");
+            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(BuildSelect));
+            staticbuilds = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ListView>(this, "staticbuilds");
         }
     }
 }

@@ -1,20 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GWSquad.BuildSelect">
+             x:Class="GWSquad.BuildSelect"
+             NavigationPage.HasBackButton="False">
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding BuildList}" x:Name="staticbuilds" ItemTapped="buildList_ItemTapped">
+            <ListView ItemsSource="{Binding BuildList}" x:Name="staticbuilds" ItemTapped="buildList_ItemTapped" BackgroundColor="Black">
                 <ListView.Header>
                     <StackLayout Orientation="Vertical">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                            <Label Text="Squads" FontSize="25" />
+                            <Label Text="Squads" FontSize="25" TextColor="White" />
 
 
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <!--<Button Text="Delete" Clicked="Delete"/>-->
-                            <Button Text="Add" Clicked="Add"/>
+                            <Button Text="Add" Clicked="Add" BackgroundColor="Gray"/>
                         </StackLayout>
                     </StackLayout>
                 </ListView.Header>
@@ -22,10 +23,10 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding BName}"/>
+                                <Label Text="{Binding BName}" FontAttributes="Bold" TextColor="White"/>
                                 <!--Text="{Binding BName}"-->
-                                <Label Text="{Binding Role}"/>
-                                <Label Text="{Binding Type}"/>
+                                <Label Text="{Binding Role}" TextColor="White"/>
+                                <Label Text="{Binding Type}" TextColor="White"/>
                                 <!--Text="{Binding Role}"/>-->
                             </StackLayout>
                         </ViewCell>

@@ -2,20 +2,22 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GWSquad.MainPage"
-             Title="Squad Overview">
+             Title="Squad Overview"
+             NavigationPage.HasBackButton="False"
+             BackgroundColor="Black">
 
             
-        <ListView x:Name="squadlist" ItemsSource="{Binding Squads}"   ItemTapped="squadlist_ItemTapped" >
+        <ListView x:Name="squadlist" ItemsSource="{Binding Squads}"   ItemTapped="squadlist_ItemTapped" BackgroundColor="Black" >
             <ListView.Header>
                 <StackLayout Orientation="Vertical">
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                        <Label Text="Squads" FontSize="25" />
+                        <Label Text="Squads" FontSize="25" TextColor="White" />
 
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
-                        <Button Text="Delete" Clicked="Delete"/>
-                        <Button Text="Add" Clicked="Add"/>
-                        <Button Text="Edit" Clicked="Edit"/>
+                        <Button Text="Delete" Clicked="Delete" BackgroundColor="DarkGray" TextColor="White"/>
+                        <Button Text="Add" Clicked="Add" BackgroundColor="DarkGray" TextColor="White"/>
+                        <Button Text="Edit" Clicked="Edit" BackgroundColor="DarkGray" TextColor="White"/>
                     </StackLayout>
                 </StackLayout>
             </ListView.Header>
@@ -23,14 +25,9 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                            <Label Text="{Binding Id}" FontSize="13" />
-                            <Entry Text="{Binding Name}" FontSize="16" FontAttributes="Bold"/>
-                            <Label x:Name="count" FontSize="16"/>
-                        <!--<Button Text="Delete" Clicked="Delete"/>-->
-                            <!--<Entry Text="Rename" MinimumWidthRequest="30" Completed="Entry_Completed" />-->
-                            <!--<Button Text="Rename" Clicked="Rename"/>-->
-                            <!--<Button Text="Edit" Clicked="Edit" HorizontalOptions="End"/>-->
-                            <!--<Button Text="Add" Clicked="Add"/>-->
+                            <Label Text="{Binding Name}" FontSize="16" FontAttributes="Bold" BackgroundColor="Transparent" TextColor="White"/>
+                            <Label x:Name="builds" FontSize="16" BackgroundColor="White"/>
+
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

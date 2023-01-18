@@ -9,119 +9,107 @@ using SQLiteNetExtensionsAsync.Extensions;
 
 namespace GWSquad
 {
-    public class SquadDatabase
+    public class SquadDatabase //mostly using the same template
     {
         static SQLiteAsyncConnection Database;
 
 
-        public static readonly AsyncLazy<SquadDatabase> Instance = new AsyncLazy<SquadDatabase>(async () =>
+        public static readonly AsyncLazy<SquadDatabase> Instance = new AsyncLazy<SquadDatabase>(async () => //establish database
         {
             var instance = new SquadDatabase();
 
-            CreateTableResult result = await Database.CreateTableAsync<Squad>();
-            CreateTableResult result2 = await Database.CreateTableAsync<Build>();
+            CreateTableResult result = await Database.CreateTableAsync<Squad>(); //table for squad
+            CreateTableResult result2 = await Database.CreateTableAsync<Build>(); //table for builds -> Preset Build Choices to Add to your squad.
 
             return instance;
         });
 
-        public SquadDatabase()
+        public SquadDatabase() //Constructor
         {
             Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
         }
 
-        public Task<List<Squad>> GetSquadsAsync()
+        public Task<List<Squad>> GetSquadsAsync()//gets a list of the Squads in the Database.
         {
-            return Database.Table<Squad>().ToListAsync();
-            /*            return Database.GetAllAsync<Squad>();*/ //returning NULL (fixed, Build Table creation)
-                                                                  //return Database.GetAllWithChildrenAsync<Squad>().FirstOrDefaultAsync();
+            var result = Database.Table<Squad>().ToListAsync();
+            return result;
+
         }
 
-        public Task<List<Build>> GetBuildsAsync()
+        public Task<List<Build>> GetBuildsAsync() //gets a list of Builds in the Database.
         {
-            return Database.Table<Build>().ToListAsync();
-            /*            return Database.GetAllAsync<Squad>();*/ //returning NULL (fixed, Build Table creation)
-                                                                  //return Database.GetAllWithChildrenAsync<Squad>().FirstOrDefaultAsync();
-        }
-        //public Task<List<Squad>> GettemsByName()
-        //{
-        //    // SQL queries are also possible
-        //    return Database.QueryAsync<Squad>("SELECT * FROM [Contact] WHERE [Name] = Bob");
-        //}
+            var result = Database.Table<Build>().ToListAsync();
+            return result;
 
-        public Task<List<Build>> GetItemsByID(int id)
+        }
+
+
+        public Task<List<Build>> GetItemsByID(int id) //New Method: Gets the Build with the Specified Public ID. This is NOT Autoincremented or uses the normal ID system.
+                                                      //This is locally saved in the code. It is used to differentiate between preset builds without using autoincrement.
         {
             return Database.QueryAsync<Build>("SELECT * FROM [Build] WHERE [PublicID] = " + id.ToString());
         }
 
-        public Task<Squad> SquadGetItemAsync(int id)
+        public Task<Squad> SquadGetItemAsync(int id) //Not used currently.
         {
-            //return Database.Table<Squad>().Where(i => i.Id == id).FirstOrDefaultAsync();
             return Database.GetAsync<Squad>(id);
             
         }
 
-        public Task<Build> BuildGetItemAsync(int id)
+        public Task<Build> BuildGetItemAsync(int id) // Not used currently.
         {
-            //return Database.Table<Squad>().Where(i => i.Id == id).FirstOrDefaultAsync();
             return Database.GetAsync<Build>(id);
 
         }
 
-        public Task/*<int>*/ SaveItemAsync(Squad item)
+        public Task SaveItemAsync(Squad item) // Saving Squad item to database
         {
             
             if (item.Id != 0)
             {
-                //return Database.UpdateAsync(item);
-                Task s = Database.UpdateAsync(item); //task Method is null and the Task.Status is Faulted.
+                Task s = Database.UpdateAsync(item); 
                 return s;
                 
-                //return /*(Task<int>)*/Database.UpdateWithChildrenAsync(item);
                 
                 
             }
             else
             {
-                return /*(Task<int>)*/Database.InsertAsync(item);
-                //return Database.InsertOrReplaceWithChildrenAsync(item);
+                return Database.InsertAsync(item);
             }
         }
 
-        public Task SaveItemAsync(Build item)
+        public Task SaveItemAsync(Build item) //same for build
         {
             if (item.Id != 0)
             {
-                //return Database.UpdateAsync(item);
-                Task s = Database.UpdateAsync(item); //task Method is null and the Task.Status is Faulted.
+                Task s = Database.UpdateAsync(item); 
                 return s;
 
-                //return /*(Task<int>)*/Database.UpdateWithChildrenAsync(item);
 
 
             }
             else
             {
-                return /*(Task<int>)*/Database.InsertAsync(item);
-                //return Database.InsertOrReplaceWithChildrenAsync(item);
+                return Database.InsertAsync(item);
             }
         }
         
 
-        public Task<int> DeleteItemAsync(Squad item)
+        public Task<int> DeleteItemAsync(Squad item) //Delete Squad 
         {
             return Database.DeleteAsync(item);
            
        
         }
-        public Task<int> DeleteAllItemsAsync()
+        public Task<int> DeleteAllItemsAsync() //Delete all Squad
         {
             return Database.DeleteAllAsync<Squad>();
         }
 
-        public Task<int> DeleteAllBuildAsync()
+        public Task<int> DeleteAllBuildAsync() // Delete all Build
         {
             return Database.DeleteAllAsync<Build>();
         }
-        //https://stackoverflow.com/questions/32581955/using-textblobbed-in-sqlite-net-extensions
     }
 }
